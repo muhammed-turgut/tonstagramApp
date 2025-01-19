@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".Fragments.AddFragment">
+
+
+    <ImageView
+        android:id="@+id/uplodPhoto"
+        android:layout_width="match_parent"
+        android:layout_height="150dp"
+        android:layout_marginTop="24dp"
+        android:onClick="uplodPhotoOnClick"
+        android:src="@drawable/uploadimage" />
+
+    <EditText
+        android:id="@+id/editTextText"
+        android:layout_width="343dp"
+        android:layout_height="274dp"
+        android:layout_gravity="center"
+        android:layout_marginTop="20dp"
+        android:background="@drawable/edit_text_bg"
+        android:ems="10"
+        android:inputType="textMultiLine"
+        android:text=""
+        android:paddingStart="4dp"
+        android:paddingTop="4dp"
+        android:hint="Enter comment..."
+        android:textColorHint="#979797"
+        android:textStyle="italic"
+        android:gravity="start|top"
+        android:maxLines="5"
+        android:maxLength="300"
+        android:scrollHorizontally="false" />
+
+    <Button
+        android:id="@+id/uplodButton"
+        android:layout_width="343dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:layout_gravity="center"
+        android:textColor="@color/white"
+        android:textSize="24sp"
+        android:background="@drawable/log_in_btn_bg"
+        android:text="Upload" />
+</LinearLayout>

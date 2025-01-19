@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/home"
+        android:icon="@drawable/home"
+        android:title="Ana Menu" />
+
+    <item
+        android:id="@+id/serch"
+        android:icon="@drawable/serch"
+        android:title="Ara" />
+
+    <item
+        android:id="@+id/add"
+        android:icon="@drawable/addicon"
+        android:title="Ekle" />
+
+    <item
+        android:id="@+id/like"
+        android:icon="@drawable/like"
+        android:title="Like" />
+
+    <item
+        android:id="@+id/user"
+        android:icon="@drawable/user"
+        android:title="Profile" />
+</menu>

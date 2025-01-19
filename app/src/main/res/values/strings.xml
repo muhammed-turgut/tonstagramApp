@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">Tonstagram</string>
+    <string name="hello_blank_fragment">Hello Blank Fragment</string>
+    <string-array name="spinner_items">
+        <item>Male</item>
+        <item>Woman</item>
+    </string-array>
+</resources>
+

@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "780118258494",
+    "project_id": "instagramcloneapp-ef63e",
+    "storage_bucket": "instagramcloneapp-ef63e.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:780118258494:android:45ab77f23e8825243b726f",
+        "android_client_info": {
+          "package_name": "com.muhammedturgut.kotlininstagramkloneapp"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDQZLEs1fVtOq4WFgKB3sJGLJXx_MuF0y8"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:780118258494:android:8970076b04b2699d3b726f",
+        "android_client_info": {
+          "package_name": "com.muhammedturgut.tonstagram"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDQZLEs1fVtOq4WFgKB3sJGLJXx_MuF0y8"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

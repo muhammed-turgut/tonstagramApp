@@ -68,6 +68,10 @@ dependencies {
     //Picaso
     implementation ("com.squareup.picasso:picasso:2.8")
 
+    //yuvrarlak çerçeveli resimler için
+
+    implementation ("com.makeramen:roundedimageview:2.3.0")
+
     dependencies {
         // Diğer bağımlılıklar
         implementation ("com.github.bumptech.glide:glide:4.12.0")

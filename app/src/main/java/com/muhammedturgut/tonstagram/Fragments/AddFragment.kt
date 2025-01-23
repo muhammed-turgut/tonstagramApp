@@ -32,6 +32,9 @@ class AddFragment : Fragment() {
     private lateinit var auth: FirebaseAuth
     private lateinit var firestore: FirebaseFirestore
     private lateinit var storage: FirebaseStorage
+    private lateinit var userName:String
+    private lateinit var profilPhoto:String
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -75,6 +78,32 @@ class AddFragment : Fragment() {
         val storageReference = storage.reference
         val imageReference = storageReference.child("Posts").child(imageName)
 
+
+
+        val email=auth.currentUser!!.email.toString()
+        val userCollection=firestore.collection("Users")
+
+        userCollection.whereEqualTo("email",email).get()
+            .addOnSuccessListener { querySnapshot ->
+                if(!querySnapshot.isEmpty){
+                    val document=querySnapshot.documents[0]
+                    val documentId=document.id
+
+                    val docRef=userCollection.document(documentId)
+                    docRef.get().addOnSuccessListener { document ->
+                        if(document != null && document.exists()){
+
+                            userName=document.get("userName").toString()
+                            profilPhoto=document.get("downloadUrl").toString()
+
+                        }
+
+                    }
+                }
+
+            }
+
+
         if (selectedPicture != null) {
             imageReference.putFile(selectedPicture!!).addOnSuccessListener {
                 imageReference.downloadUrl.addOnSuccessListener { uri ->
@@ -85,6 +114,8 @@ class AddFragment : Fragment() {
                     postMap["email"] = auth.currentUser?.email.toString()
                     postMap["comment"] = binding.editTextText.text.toString()
                     postMap["date"] = com.google.firebase.Timestamp.now()
+                    postMap["profilPhoto"]=profilPhoto
+                    postMap["userName"]=userName
 
                     firestore.collection("Posts").add(postMap).addOnSuccessListener {
                         Toast.makeText(requireContext(), "Post uploaded successfully", Toast.LENGTH_SHORT).show()

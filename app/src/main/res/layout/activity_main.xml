@@ -13,12 +13,12 @@
 
         <TextView
             android:id="@+id/textView"
-            android:padding="4dp"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:fontFamily="@font/billabong"
-            android:text="Tonstagram"
+            android:layout_height="56dp"
             android:layout_gravity="center"
+            android:fontFamily="@font/billabong"
+            android:padding="4dp"
+            android:text="Tonstagram"
             android:textColor="#262626"
             android:textSize="40sp"
             android:textStyle="bold" />
@@ -41,7 +41,7 @@
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/bottom_navigation"
         android:layout_width="match_parent"
-        android:layout_height="80dp"
+        android:layout_height="60dp"
         android:layout_alignParentBottom="true"
         android:background="@color/white"
         app:itemIconTint="#262626"

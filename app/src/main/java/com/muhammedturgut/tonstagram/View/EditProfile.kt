@@ -19,6 +19,7 @@ import androidx.core.view.WindowInsetsCompat
 import com.bumptech.glide.Glide
 import com.google.android.material.snackbar.Snackbar
 import com.google.firebase.Firebase
+import com.google.firebase.Timestamp
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.auth
 import com.google.firebase.firestore.FirebaseFirestore
@@ -26,7 +27,10 @@ import com.google.firebase.firestore.Query
 import com.google.firebase.firestore.firestore
 import com.google.firebase.storage.FirebaseStorage
 import com.muhammedturgut.tonstagram.R
+import com.muhammedturgut.tonstagram.SquareTransformation
 import com.muhammedturgut.tonstagram.databinding.ActivityEditProfileBinding
+import com.squareup.picasso.Picasso
+import java.util.UUID
 
 class EditProfile : AppCompatActivity() {
     private lateinit var binding: ActivityEditProfileBinding
@@ -35,6 +39,7 @@ class EditProfile : AppCompatActivity() {
     private lateinit var permissionLauncher: ActivityResultLauncher<String>
     private var selectedPicture: Uri? = null
     private lateinit var db: FirebaseFirestore
+    private  var photoChange:Boolean =false
     private lateinit var storage: FirebaseStorage
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -46,69 +51,135 @@ class EditProfile : AppCompatActivity() {
         auth=Firebase.auth
         db=Firebase.firestore
 
-        val currentUser = auth.currentUser
-        if (currentUser != null) {
-            val userId = currentUser.uid
-            val userDocRef = db.collection("Users").document(userId)
-            userDocRef.get().addOnSuccessListener { document ->
-                if (document != null && document.exists()) {
-                    val name = document.getString("name")
-                    val surename = document.getString("sureName")
-                    val userName = document.getString("userName")
-                    val phone = document.getString("Phone")
-                    val email = document.getString("email")
-                    val gender = document.getString("Gender")
-                    val profileImageUrl = document.getString("downloadUrl")
 
-                    binding.editTextName.setText("$name $surename")
-                    binding.editTextTextUsername.setText(userName)
-                    binding.phoneEditProfil.setText(phone)
-                    binding.emailEditProfil.setText(email)
-                    binding.genderEditProfil.setText(gender)
+        profileInformation()
 
-                    // Profil resmini yükle
-                    if (!profileImageUrl.isNullOrEmpty()) {
-                        Glide.with(this)
-                            .load(profileImageUrl)
-                            .into(binding.editProfilPhoto)
+    }
+
+     fun profileInformation(){
+         val email=auth.currentUser!!.email.toString()
+         val userCollection=db.collection("Users")
+
+        userCollection.whereEqualTo("email",email).get()
+            .addOnSuccessListener { querySnapshot ->
+                if(!querySnapshot.isEmpty){
+                    val document=querySnapshot.documents[0]
+                    val documentId=document.id
+
+                    val docRef=userCollection.document(documentId)
+                    docRef.get().addOnSuccessListener { document ->
+                        if(document != null && document.exists()){
+
+                            val imageProfileUrl=document.get("downloadUrl").toString()
+
+                            if(imageProfileUrl != null){
+
+                                Picasso.get()
+                                    .load(imageProfileUrl)
+                                    .transform(SquareTransformation())
+                                    .into(binding.editProfilPhoto)
+                            }
+                            else{
+                                println("veri Okunamadi")
+                            }
+
+                            binding.editTextName.setText(document.get("name").toString()+" "+document.get("sureName").toString())
+                            binding.editTextTextUsername.setText(document.get("userName").toString())
+                            binding.emailEditProfil.text=document.get("email").toString()
+                            binding.editTextTextAbout.setText(document.get("about").toString())
+                            binding.editTextTextWebSite.setText(document.get("webSite").toString())
+                            binding.phoneEditProfil.text=document.get("Phone").toString()
+                            binding.genderEditProfil.text=document.get("Gender").toString()
+
+                        }
+
                     }
                 }
-            }.addOnFailureListener { e ->
-                Toast.makeText(this, "Veritabanı hatası: ${e.localizedMessage}", Toast.LENGTH_SHORT).show()
+
             }
-        }
-    }
-
-
-    private fun loadUserProfile() {
 
     }
+
 
 
 
     fun doneEditProfil(view: View){
+        println("Hata")
+        val email=auth.currentUser!!.email.toString()
+        val userCollection=db.collection("Users")
 
-// Firestore bağlantısını kur
-        db = FirebaseFirestore.getInstance()
+        val name=binding.editTextName.text.toString()
+        val username=binding.editTextTextUsername.text.toString()
+        val webSite=binding.editTextTextWebSite.text.toString()
+        val about=binding.editTextTextAbout.text.toString()
+
+        userCollection.whereEqualTo("email",email).get()
+            .addOnSuccessListener { querySnapshot ->
+                if (photoChange == true) {
+
+                    if (name.isNotEmpty() && username.isNotEmpty() && webSite.isNotEmpty() && about.isNotEmpty() && selectedPicture != null) {
+                        if(!querySnapshot.isEmpty){
+                            val document = querySnapshot.documents[0]
+                            val userId = document.id
+                            userCollection.document(userId).update(
+                                mapOf(
+                                    "name" to name,
+                                    "userName" to username,
+                                    "webSite" to webSite,
+                                    "about" to about,
+                                    "downloadUrl" to selectedPicture
+                                )
+                            ).addOnSuccessListener {
+                                finish()
+                            }.addOnFailureListener { e ->
+                                // Güncelleme sırasında hata oluşursa yapılacak işlemler
+                                println("Kullanıcı bilgileri güncellenirken hata oluştu: ${e.message}")
+                            }
+
+                        }
+                    } else {
+                        Toast.makeText(
+                            this@EditProfile,
+                            "Lütfen Gerkli alanları doldurun",
+                            Toast.LENGTH_LONG
+                        ).show()
+                    }
+                }
+                else {
+                    if (name.isNotEmpty() && username.isNotEmpty() && webSite.isNotEmpty() && about.isNotEmpty()) {
+                        if(!querySnapshot.isEmpty){
+                            val document = querySnapshot.documents[0]
+                            val userId = document.id
+                            userCollection.document(userId).update(
+                                mapOf(
+                                    "name" to name,
+                                    "userName" to username,
+                                    "webSite" to webSite,
+                                    "about" to about
+                                )
+                            ).addOnSuccessListener {
+                                finish()
+                            }.addOnFailureListener { e ->
+                                // Güncelleme sırasında hata oluşursa yapılacak işlemler
+                                println("Kullanıcı bilgileri güncellenirken hata oluştu: ${e.message}")
+                            }
+
+                        }
+                    }
+                    }
+                }
+
 
     }
 
     fun cancelEditProfil(view:View){
-
-        val Name=binding.editTextName.text.toString()
-        val username=binding.editTextTextUsername.text.toString()
-        val webSite=binding.editTextTextWebSite.text.toString()
-        val about=binding.editTextTextAbout.text.toString()
-        val image=binding.editProfilPhoto.imageAlpha
-
-
+        //Edit profile sayfasında güncelleme yapılmak istenmese yapılacakları söylüyor.
         finish()
-
 
     }
 
     fun changeProfilPhoto(view: View){
-
+        photoChange=true
         if(ContextCompat.checkSelfPermission(this,
                 Manifest.permission.READ_EXTERNAL_STORAGE)!= PackageManager.PERMISSION_GRANTED){
             if(ActivityCompat.shouldShowRequestPermissionRationale(this, Manifest.permission.READ_EXTERNAL_STORAGE)){
@@ -126,7 +197,6 @@ class EditProfile : AppCompatActivity() {
 
         }
     }
-
 
     private fun registerLanchuer(){
 

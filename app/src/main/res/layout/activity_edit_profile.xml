@@ -57,15 +57,14 @@
                 android:textStyle="bold" />
         </LinearLayout>
 
-        <ImageView
+
+        <com.makeramen.roundedimageview.RoundedImageView
             android:id="@+id/editProfilPhoto"
             android:layout_width="100dp"
             android:layout_height="100dp"
-            android:layout_centerInParent="true"
+            app:riv_oval="true"
             android:layout_gravity="center"
             android:layout_marginTop="8dp"
-            android:background="@drawable/profil_photo_bg"
-            android:clipToOutline="true"
             android:onClick="changeProfilPhoto"
             android:scaleType="centerCrop"
             app:srcCompat="@drawable/userprofile" />

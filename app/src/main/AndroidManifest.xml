@@ -20,27 +20,13 @@
         <activity
             android:name=".View.MainActivity"
             android:exported="false" />
-        <activity
-            android:name=".View.LikeActivity"
-            android:exported="false" />
-        <activity
-            android:name=".View.AddActivity"
-            android:exported="false" />
-        <activity
-            android:name=".View.searchActivtiy"
-            android:exported="false" />
-        <activity
-            android:name=".View.ProfilActivity"
-            android:exported="false" />
-        <activity
-            android:name=".View.SignUpScreen"
-            android:exported="false" />
-        <activity
-            android:name=".View.HomePage"
-            android:exported="false" />
-        <activity
-            android:name=".View.loginScreen"
-            android:exported="false" />
+
+        <activity android:name=".View.LoginScreen"
+            android:exported="false"/>
+
+        <activity android:name=".View.SignUpScreen"
+            android:exported="false"/>
+
         <activity
             android:name=".View.SplashScreen"
             android:exported="true">

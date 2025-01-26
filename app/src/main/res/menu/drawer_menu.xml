@@ -1,4 +1,38 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/arcihv"
+        android:icon="@drawable/arcihv"
+        android:title="Archive" />
+    <item
+        android:id="@+id/yourarchiv"
+        android:icon="@drawable/yourarchiv"
+        android:title="Your Archive" />
+    <item
+        android:id="@+id/nametag"
+        android:icon="@drawable/nametag"
+        android:title="Nametag" />
+
+    <item
+        android:id="@+id/saved"
+        android:icon="@drawable/save"
+        android:title="Saved"/>
+    <item
+        android:id="@+id/closefriends"
+        android:icon="@drawable/closefriends"
+        android:title="Close Friends" />
+    <item
+        android:id="@+id/discoverpeople"
+        android:icon="@drawable/discoverpeople"
+        android:title="Discover People" />
+    <item
+        android:id="@+id/openfacebook"
+        android:icon="@drawable/openfacebook"
+        android:title="Open Facebook" />
+
+    <item
+        android:id="@+id/logout"
+        android:icon="@drawable/logout"
+        android:title="Log Out" />
 
 </menu>

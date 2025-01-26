@@ -9,6 +9,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.recyclerview.widget.GridLayoutManager
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
@@ -30,7 +31,7 @@ class ProfilFragment : Fragment() {
     private lateinit var db: FirebaseFirestore
     private lateinit var profilPostArrayList: ArrayList<ProfilModel>
     private lateinit var profilAdapter: ProfilAdapter
-
+    private lateinit var toggle: ActionBarDrawerToggle
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
     }
@@ -44,6 +45,8 @@ class ProfilFragment : Fragment() {
 
         auth = FirebaseAuth.getInstance()
         db = FirebaseFirestore.getInstance()
+
+
 
         profilPostArrayList = ArrayList()
 

@@ -1,6 +1,8 @@
 <resources>
     <string name="app_name">Tonstagram</string>
     <string name="hello_blank_fragment">Hello Blank Fragment</string>
+    <string name="navigation_drawer_open">Open Navigation Drawer</string>
+    <string name="navigation_drawer_close">Close Navigation Drawer</string>
     <string-array name="spinner_items">
         <item>Male</item>
         <item>Woman</item>

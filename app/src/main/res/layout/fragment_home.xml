@@ -18,6 +18,7 @@
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/recyclerViewStrois"
             android:layout_width="match_parent"
+            android:verticalScrollbarPosition="right"
             android:layout_height="98dp"
             android:orientation="horizontal" />
 

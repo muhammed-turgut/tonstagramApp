@@ -30,6 +30,8 @@
                 android:id="@+id/editProfilPhoto"
                 android:layout_width="100dp"
                 android:layout_height="100dp"
+                android:padding="8dp"
+                android:background="@drawable/storis_profil_bg"
                 android:layout_gravity="center"
                 android:src="@drawable/userprofile"
                 app:riv_oval="true" />
@@ -123,7 +125,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="24dp"
             android:layout_marginTop="12dp"
-            android:text="Muhammed Turgut"
+            android:text=""
             android:textColor="#262626"
             android:textSize="12sp"
             android:textStyle="bold" />
@@ -156,6 +158,17 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
+            android:background="@drawable/navigation_bottom_bg" />
+        <!-- RecyclerView for Profile Posts -->
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recyclerViewProfilStoris"
+            android:verticalScrollbarPosition="right"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:verticalScrollbarPosition="right"
             android:background="@drawable/navigation_bottom_bg" />
 
         <!-- RecyclerView for Profile Posts -->

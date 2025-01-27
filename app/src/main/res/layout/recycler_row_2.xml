@@ -36,7 +36,7 @@
             android:text="userName" />
 
         <ImageView
-            android:id="@+id/imageView5"
+            android:id="@+id/recycler_row_options_menu"
             android:layout_width="20dp"
             android:layout_height="20dp"
             android:layout_gravity="center"

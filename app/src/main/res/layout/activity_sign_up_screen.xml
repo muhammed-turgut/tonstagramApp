@@ -30,14 +30,15 @@
             android:textSize="20dp"
             android:textStyle="bold" />
 
-        <ImageView
+        <com.makeramen.roundedimageview.RoundedImageView
             android:id="@+id/profilPhoto"
             android:layout_width="100dp"
             android:layout_height="100dp"
+            app:riv_oval="true"
+            android:background="@drawable/storis_profil_bg"
             android:layout_centerInParent="true"
             android:layout_gravity="center"
             android:layout_marginTop="8dp"
-            android:background="@drawable/profil_photo_bg"
             android:clipToOutline="true"
             android:onClick="changeProfilPhoto"
             android:scaleType="centerCrop"

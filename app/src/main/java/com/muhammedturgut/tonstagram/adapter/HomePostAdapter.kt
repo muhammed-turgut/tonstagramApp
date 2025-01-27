@@ -3,6 +3,7 @@ package com.muhammedturgut.tonstagram.adapter
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import com.muhammedturgut.tonstagram.SquareTransformation
 import com.muhammedturgut.tonstagram.databinding.RecyclerRow2Binding
 
 import com.muhammedturgut.tonstagram.model.HomeModel
@@ -12,6 +13,11 @@ class HomePostAdapter(val postHomeList: ArrayList<HomeModel>):RecyclerView.Adapt
     class HomePostHolder(val binding: RecyclerRow2Binding):RecyclerView.ViewHolder(binding.root) {
 
     }
+
+    interface OnItemClickListener {
+        fun onItemClick(position: Int)
+    }
+
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): HomePostHolder {
     val binding=RecyclerRow2Binding.inflate(LayoutInflater.from(parent.context),parent,false)
@@ -28,8 +34,10 @@ class HomePostAdapter(val postHomeList: ArrayList<HomeModel>):RecyclerView.Adapt
         holder.binding.userNameCommentMainPage.text=postHomeList.get(position).userName
         holder.binding.commentMainPage.text=postHomeList.get(position).comment
 
-        Picasso.get().load(postHomeList.get(position).profilPhoto).into(holder.binding.profilPhotoMainPage)
+        Picasso.get().load(postHomeList.get(position).profilPhoto).transform(SquareTransformation()).into(holder.binding.profilPhotoMainPage)
         Picasso.get().load(postHomeList.get(position).postImage).into(holder.binding.recyclerRowImageMainPage)
+
+        
 
     }
 }

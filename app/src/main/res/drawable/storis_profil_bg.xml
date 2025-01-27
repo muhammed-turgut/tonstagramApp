@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+    <!-- Dış çerçeve: Gri -->
+    <item>
+        <shape>
+            <solid android:color="@android:color/transparent" />
+            <stroke android:width="1dp" android:color="#C7C7CC"/>
+            <corners android:radius="1000dp"/>
+        </shape>
+    </item>
+
+    <!-- İç çerçeve: Beyaz -->
+    <item android:left="3dp" android:right="3dp" android:top="3dp" android:bottom="3dp">
+        <shape>
+            <solid android:color="@android:color/transparent" />
+            <stroke android:width="4dp" android:color="@color/white" />
+            <corners android:radius="1000dp"/>
+        </shape>
+    </item>
+
+    <!-- Yuvarlak Resim Arka Planı -->
+    <item android:left="7dp" android:right="7dp" android:top="7dp" android:bottom="7dp">
+        <shape>
+            <solid android:color="@android:color/transparent" />
+            <corners android:radius="1000dp"/>
+        </shape>
+    </item>
+</layer-list>

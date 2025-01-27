@@ -85,8 +85,10 @@ class HomeFragment : Fragment() {
                     homePostArrayList.add(post)
                 }
                 homePostAdapter.notifyDataSetChanged()
+                //burısı çok güzel
             }
         }
+
     }
 
     private fun getDataStoris() {
